@@ -1,0 +1,37 @@
+<%= form_for(@post, :html => { :class => "form form-horizontal" }) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name %>
+    </div><!-- controls -->
+  </div>
+  <div class="control-group">
+    <%= f.label :content, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :content %>
+    </div><!-- controls -->
+  </div>
+
+  <%= f.hidden_field :verified, :value => 0 %>
+  <%= f.hidden_field :user_id, :value => get_current_user().id %>
+
+  <div class="control-group">
+
+    <div class="btn-group controls">
+      <%= link_to 'Back', posts_path, :class => "btn" %>
+      <%= f.submit "Save", :class => "btn btn-success" %>
+    </div>
+</div><!-- control-group -->
+<% end %>

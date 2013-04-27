@@ -1,0 +1,17 @@
+<div class="media">
+  <a class="pull-left" href="#">
+    <img class="media-object" src="<%= profile_picture_for(comment.user) if comment.user %>" />
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <% if comment.user then %>
+        <%= comment.user.first_name %> <%= comment.user.last_name %>
+      <% else %>
+        Unknown User
+      <% end %>
+      </h4>
+    <p><%= comment.content %></p>
+  </div>
+</div>
+
+<div style="clear: both"></div>

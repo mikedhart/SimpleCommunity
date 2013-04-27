@@ -1,0 +1,16 @@
+<div class="container">
+	<div class="row">
+		<div class="span2">
+			<img src="//placehold.id/140x140" alt="Profile picture" />
+		</div><!-- span2 -->
+		<div class="span10">
+			<div class="btn-group">
+				<%= link_to "New Post", new_post_path, :class => "btn" %>
+			</div><!-- btn-group -->
+
+			<% @posts.each do |post| %>
+				<%= render "posts/mini" %>
+			<% end %>
+		</div><!-- span10 -->
+	</div>
+</div>

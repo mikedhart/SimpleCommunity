@@ -1,0 +1,23 @@
+<%= form_for(@comment, :class => "form", :action => post_comments_path(@post)) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <% @comment.errors.full_messages.each do |msg| %>
+        <p class="alert"><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :user_id, :value => get_current_user().id %>
+  <%= f.hidden_field :post_id, :value => params[:post_id] %>
+  <%= f.hidden_field :verified, :value => 0 %>
+
+  <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  <div class="btn-group">
+    <%= link_to 'Back', post_path(@post), :class => "btn" %>
+    <%= f.submit :class => "btn btn-success" %>
+  </div>
+<% end %>
