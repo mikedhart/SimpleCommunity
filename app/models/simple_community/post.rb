@@ -8,7 +8,7 @@ module SimpleCommunity
     validates :name, :length => { :minimum => 3 }
     validates :content, :length => { :minimum => 10 }
 
-    def is_owner(user_id)?
+    def is_owner?(user_id)
 	  true
     end
   end
