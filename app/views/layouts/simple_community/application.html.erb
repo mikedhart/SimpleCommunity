@@ -12,7 +12,9 @@
   <div class="row">
     <div class="span2">
 	  <div class="well">
-      	<%= image_tag profile_picture() %>
+        <a href="/users/<%= get_current_user().id %>/edit">
+    	    <%= image_tag profile_picture() %>
+        </a>
       	<p>Welcome, <%= user_name() %></p>
       	<p>Total posts: <%= post_count() %></p>
       	<p>Unverified posts: <%= unverified_post_count() %></p>
