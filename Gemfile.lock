@@ -1,8 +1,16 @@
+GIT
+  remote: https://github.com/mikedhart/SimpleImageBank.git
+  revision: 08aa7d43c522d57475d24d55d5bb0418996eb099
+  specs:
+    simple_image_bank (0.0.1)
+      paperclip (~> 3.4)
+      rails (~> 3.2)
+
 PATH
   remote: .
   specs:
     simple_community (0.0.1)
-      rails (~> 3.2.13)
+      rails (~> 3.2)
 
 GEM
   remote: http://rubygems.org/
@@ -36,6 +44,10 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     erubis (2.7.0)
     hike (1.2.2)
     i18n (0.6.1)
@@ -51,6 +63,12 @@ GEM
     mime-types (1.23)
     multi_json (1.7.2)
     mysql2 (0.3.11-x86-mingw32)
+    paperclip (3.4.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -95,4 +113,6 @@ PLATFORMS
 DEPENDENCIES
   jquery-rails
   mysql2
+  paperclip
   simple_community!
+  simple_image_bank!

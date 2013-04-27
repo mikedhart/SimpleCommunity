@@ -5,6 +5,8 @@
   </div><!-- btn-group -->
 </div><!-- well -->
 
+<%= content_tag(:strong, "There are currently no posts on display.") unless @posts.size > 0 %>
+
 <% @posts.each do |post| %>
   <%= render post, :locals => { :post => post } %>
 <% end %>

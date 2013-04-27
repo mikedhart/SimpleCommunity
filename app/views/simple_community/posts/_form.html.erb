@@ -1,4 +1,24 @@
-<%= form_for(@post, :html => { :class => "form form-horizontal" }) do |f| %>
+<div id="simple_image_bank_modal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>My Image Bank</h3>
+  </div>
+  <div class="modal-body">
+    <% get_image_bank_for(get_current_user).images.each do |image| %>
+      <% if (@post.images.include?(image)) then %>
+        <%= image_tag image.image.url(:thumb), :id => image.id, :class => "simple_image_bank_thumb selected" %>
+      <% else %>
+        <%= image_tag image.image.url(:thumb), :id => image.id, :class => "simple_image_bank_thumb" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" id="simple_image_bank_modal_close">Close</a>
+    <a href="#" class="btn btn-primary" id="simple_image_bank_add_selected">Add this image</a>
+  </div>
+</div>
+
+<%= form_for(@post, :html => { :class => "form_image_addable form form-horizontal" }) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -11,27 +31,42 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => "control-label" %>
-    <div class="controls">
-      <%= f.text_field :name %>
-    </div><!-- controls -->
-  </div>
-  <div class="control-group">
-    <%= f.label :content, :class => "control-label" %>
-    <div class="controls">
-      <%= f.text_area :content %>
-    </div><!-- controls -->
-  </div>
-
-  <%= f.hidden_field :verified, :value => 0 %>
-  <%= f.hidden_field :user_id, :value => get_current_user().id %>
-
-  <div class="control-group">
-
-    <div class="btn-group controls">
-      <%= link_to 'Back', posts_path, :class => "btn" %>
-      <%= f.submit "Save", :class => "btn btn-success" %>
+  <fieldset>
+    <legend>Basic Details</legend>
+    <div class="control-group">
+      <%= f.label :name, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div><!-- controls -->
     </div>
-</div><!-- control-group -->
+    <div class="control-group">
+      <%= f.label :content, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :content %>
+      </div><!-- controls -->
+    </div>
+    <div class="control-group">
+      <%= f.label :youtube_id, :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :youtube_id %>
+      </div><!-- controls -->
+    </div>
+
+    <%= f.hidden_field :verified, :value => 0 %>
+    <%= f.hidden_field :user_id, :value => get_current_user().id %>
+</fieldset>
+<fieldset>
+  <legend>Images</legend>
+  <%= link_to "Add images", "#", :id => "simple_image_bank_display_modal" %>
+  <% @post.images.each do |image| %>
+    <input type="hidden" name="post_image[]" class="post_image" value="<%= image.id %>" />
+  <% end %>
+</fieldset>
+  <div class="control-group">
+
+      <div class="btn-group controls">
+        <%= link_to 'Back', posts_path, :class => "btn" %>
+        <%= f.submit "Save", :class => "btn btn-success" %>
+      </div>
+  </div><!-- control-group -->
 <% end %>

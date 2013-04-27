@@ -6,9 +6,22 @@
 	<p class="alert alert-warning">This post is pending verification</p>
 <% end %>
 
-<p><%= @post.content %></p>
+<p class="<% if (@post.images.size > 0 || @post.youtube_id) %>has_images<% end %>"><%= @post.content %></p>
 
-<%= render @post.comments.where("verified = ?", true) %>
+<% if (@post.images.size > 0 || @post.youtube_id) then %>
+	<span class="post_images">
+		<% if (@post.youtube_id) then %>
+			<iframe src="http://www.youtube.com/embed/<%= @post.youtube_id %>" frameborder="0" allowfullscreen></iframe>
+		<% end %>
+		<% @post.images.each do |image| %>
+			<%= image_tag image.image.url(:medium) %>
+		<% end %>
+	</span><!-- post_images -->
+<% end %>
+
+<%= content_tag(:strong, "There are currently no comments for this post.") unless @comments.size > 0 %>
+
+<%= render @comments %>
 
 <div class="btn-group">
 	<%= link_to 'Back to Posts', posts_path, :class => "btn" %>

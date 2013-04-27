@@ -1,4 +1,38 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+.selected {
+	border: 2px solid #ccc;
+}
+
+.simple_image_bank_thumb {
+	width: 100px;
+	height: 100px;
+}
+
+.simple_image_bank_thumb.selected {
+	width: 96px;
+	height: 96px;
+}
+
+.simple_image_bank_thumb:active {
+	width: 94px;
+	height: 94px;
+}
+
+.simple_image_bank_thumb:hover {
+	cursor: pointer;
+}
+
+p.has_images {
+	width: 80%;
+	float: left;
+}
+
+span.post_images {
+	width: 20%;
+	float: right;
+	text-align: right;
+}
+
+span.post_images img, span.post_images iframe {
+	width: 98%;
+	margin-bottom: 10px;
+}

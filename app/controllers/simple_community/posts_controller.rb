@@ -18,6 +18,7 @@ module SimpleCommunity
     # GET /posts/1.json
     def show
       @post = Post.find(params[:id])
+      @comments = @post.comments.where("verified = ?", true)
   
       respond_to do |format|
         format.html # show.html.erb
@@ -45,6 +46,14 @@ module SimpleCommunity
     # POST /posts.json
     def create
       @post = Post.new(params[:post])
+
+      @post.images.clear
+
+      if (params[:post_image]) then
+        params[:post_image].each do |image|
+          @post.images << SimpleImageBank::Image.find(image)
+        end
+      end
   
       respond_to do |format|
         if @post.save
@@ -61,6 +70,14 @@ module SimpleCommunity
     # PUT /posts/1.json
     def update
       @post = Post.find(params[:id])
+
+      @post.images.clear
+
+      if (params[:post_image]) then
+        params[:post_image].each do |image|
+          @post.images << SimpleImageBank::Image.find(image)
+        end
+      end
   
       respond_to do |format|
         if @post.update_attributes(params[:post])
