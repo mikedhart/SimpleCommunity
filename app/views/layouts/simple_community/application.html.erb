@@ -16,6 +16,7 @@
       	<p>Welcome, <%= user_name() %></p>
       	<p>Total posts: <%= post_count() %></p>
       	<p>Unverified posts: <%= unverified_post_count() %></p>
+        <%= link_to "New Post", new_post_path, :class => "btn btn-success" %>
 	  </div><!-- well -->
     </div><!-- span2 -->
     <div class="span10">
