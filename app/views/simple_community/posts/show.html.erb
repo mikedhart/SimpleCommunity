@@ -10,7 +10,7 @@
 
 <% if (@post.images.size > 0 || @post.youtube_id) then %>
 	<span class="post_images">
-		<% if (@post.youtube_id) then %>
+		<% if (@post.youtube_id && @post.youtube_id != "") then %>
 			<iframe src="http://www.youtube.com/embed/<%= @post.youtube_id %>" frameborder="0" allowfullscreen></iframe>
 		<% end %>
 		<% @post.images.each do |image| %>
