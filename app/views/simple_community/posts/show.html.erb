@@ -6,7 +6,7 @@
 	<p class="alert alert-warning">This post is pending verification</p>
 <% end %>
 
-<p class="<% if (@post.images.size > 0 || @post.youtube_id) %>has_images<% end %>"><%= @post.content %></p>
+<p class="<% if (@post.images.size > 0 || @post.youtube_id) %>has_images<% end %>"><%=raw @post.content %></p>
 
 <% if (@post.images.size > 0 || @post.youtube_id) then %>
 	<span class="post_images">

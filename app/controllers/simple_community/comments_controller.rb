@@ -49,6 +49,7 @@ module SimpleCommunity
   
       respond_to do |format|
         if @comment.save
+          flash[:notice] = "Your comment has been created but is currently pending verification."
           format.html { redirect_to @comment.post, notice: 'Comment was successfully created.' }
           format.json { render json: @comment, status: :created, location: @comment }
         else

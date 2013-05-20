@@ -10,7 +10,7 @@
     <h4 class="media-heading">
       <%= post.name %>
   	</h4>
-    <%= truncate(post.content, :length => 200) %>
+    <%=raw truncate(post.content, :length => 200) %>
     <br />
     <div class="btn-group">
 	  <%= link_to "Comment (" + post.comments.where("verified = ?", true).size.to_s + ")", new_post_comment_path(post), :class => "btn" %>
